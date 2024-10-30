@@ -1,0 +1,13 @@
+name: unturned_server
+services:
+    unturned:
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./data:/home/steam/Unturned
+        ports:
+            - 27015:27015
+            - 27016:27016
+        restart: unless-stopped
+        container_name: unturned-server
+        image: zoobdude/unturned-docker
