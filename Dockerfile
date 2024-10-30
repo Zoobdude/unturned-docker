@@ -1,21 +1,15 @@
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND noninteractive
-ENV GAME_INSTALL_DIR /home/steam/Unturned
-ENV GAME_ID 1110390
-ENV SERVER_NAME server
-ENV STEAM_USERNAME anonymous
+ENV GAME_INSTALL_DIR="/home/steam/Unturned"
+ENV GAME_ID="1110390"
+ENV SERVER_NAME="server"
+ENV STEAM_USERNAME="anonymous"
 
 EXPOSE 27015
 EXPOSE 27016
 
 # Add Steam user
-RUN adduser \
-	--home /home/steam \
-	--disabled-password \
-	--shell /bin/bash \
-	--gecos "user for running steam" \
-	--quiet \
-	steam
+RUN useradd -m -d /home/steam -s /bin/bash steam
 
 # Create working directory
 RUN mkdir -p /home/steam/Unturned && \
